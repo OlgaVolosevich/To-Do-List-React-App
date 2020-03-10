@@ -1,0 +1,17 @@
+.todoListItem {
+    display: flex;
+
+    span {
+        flex-grow: 1;
+        cursor: pointer;
+    }
+
+    button {
+        margin-left: 10px;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

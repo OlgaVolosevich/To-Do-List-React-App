@@ -1,14 +1,25 @@
 import React from 'react';
+import classes from './app.module.scss';
 import AppHeader from '../AppHeader';
 import SearchPannel from '../SearchPannel';
 import TodoList from '../TodoList';
+import ItemStatusFilter from '../ItemStatusFilter';
 
 const App = () => {
+    
+    const todos = [
+        {label : 'Learn JS', important : 'true', id : 1},
+        {label : 'Learn React', important : 'true', id : 2},
+        {label : 'Learn Angular', important : 'true', id : 3}
+    ]
     return (
-        <div>
-            <AppHeader/>
+        <div className={classes.app}>
+            <AppHeader toDo={3} done={0}/>
+            <div className={classes.topPannel}>
             <SearchPannel/>
-            <TodoList/>
+            <ItemStatusFilter/>
+            </div>
+            <TodoList todos={todos}/>
         </div>
     )
 }

@@ -1,12 +1,23 @@
 import React from 'react';
+import { ListGroup, ListGroupItem } from 'reactstrap';
+import TodoListItem from '../TodoListItem';
 
-const TodoList = () => {
+const TodoList = ({ todos }) => {
+    const elements = todos.map((item) => {
+    const { id, ...itemProps } = item;
+        return (
+            <ListGroupItem key={ id }>
+                <TodoListItem
+                { ...itemProps }/>
+            </ListGroupItem>
+        );
+    })
+
    return (
-    <ul>
-        <li>Learn React</li>
-        <li>Create Awesome React App</li>
-    </ul>
-   )
+    <ListGroup>
+        { elements }
+    </ListGroup>
+   );
 }
 
 export default TodoList;
