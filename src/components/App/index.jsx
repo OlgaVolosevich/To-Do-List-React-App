@@ -8,9 +8,9 @@ import ItemStatusFilter from '../ItemStatusFilter';
 const App = () => {
     
     const todos = [
-        {label : 'Learn JS', important : 'true', id : 1},
-        {label : 'Learn React', important : 'true', id : 2},
-        {label : 'Learn Angular', important : 'true', id : 3}
+        {label : 'Learn JS', important : false, id : 1},
+        {label : 'Learn React', important : true, id : 2},
+        {label : 'Learn Angular', important : false, id : 3}
     ]
     return (
         <div className={classes.app}>
