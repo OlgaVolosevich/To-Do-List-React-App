@@ -6,24 +6,29 @@ import './TodoListItem.scss';
 
     state = {
         done: false,
+        important : this.props.important,
     }
 
      onLabelClick = () => {
-        /* this.setState ({
-             done: !done
-         })*/
-
          this.setState((state) => ({
             done: !state.done,
           }));
      }
+
+     toggleImportant = () => {
+        this.setState((state) => ({
+            important: !state.important,
+          }));
+     }
+
     render () {
+        const { important } = this.state;
         const { done } = this.state;
         let classNames='';
         if (done) {
             classNames += 'done';
         }
-        const { label, important=false } = this.props;
+        const { label } = this.props;
         const style = {
             color: important ? 'steelblue' : 'black',
             fontWeight: important ? 'bold' : 'normal',
@@ -34,7 +39,7 @@ import './TodoListItem.scss';
                 <span className={classNames} style={style} onClick={this.onLabelClick}>
                     {label}
                 </span>
-                <Button outline color="success">
+                <Button onClick={this.toggleImportant}outline color="success">
                     <i className="fa fa-exclamation" />
                 </Button>
                 <Button outline color="danger">

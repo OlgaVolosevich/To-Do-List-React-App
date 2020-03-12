@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup } from 'reactstrap';
-import classes from './ItemStatusFilter.module.scss';
+//import classes from './ItemStatusFilter.module.scss';
 
 class ItemStatusFilter extends Component {
 
@@ -15,14 +15,5 @@ class ItemStatusFilter extends Component {
         )
     }
 }
-/*const ItemStatusFilter = () => {
-    return (
-        <ButtonGroup>
-            <Button>All</Button>
-            <Button>Active</Button>
-            <Button>Done</Button>
-        </ButtonGroup>
-    )
-}*/
 
 export default ItemStatusFilter;
