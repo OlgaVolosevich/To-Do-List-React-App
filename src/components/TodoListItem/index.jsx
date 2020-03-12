@@ -1,18 +1,37 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
-import classes from './TodoListItem.module.scss';
+import './TodoListItem.scss';
 
  class TodoListItem extends Component {
+
+    state = {
+        done: false,
+    }
+
+     onLabelClick = () => {
+        /* this.setState ({
+             done: !done
+         })*/
+
+         this.setState((state) => ({
+            done: !state.done,
+          }));
+     }
     render () {
+        const { done } = this.state;
+        let classNames='';
+        if (done) {
+            classNames += 'done';
+        }
         const { label, important=false } = this.props;
         const style = {
             color: important ? 'steelblue' : 'black',
-            fontWeight: important ? 'bold' : 'normal'
+            fontWeight: important ? 'bold' : 'normal',
           }; 
     
         return (
-            <span className={classes.todoListItem}>
-                <span style={style}>
+            <span className='todoListItem'>
+                <span className={classNames} style={style} onClick={this.onLabelClick}>
                     {label}
                 </span>
                 <Button outline color="success">
