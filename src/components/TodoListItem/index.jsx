@@ -15,7 +15,7 @@ import './TodoListItem.scss';
           }));
      }
 
-     toggleImportant = () => {
+     onToggleImportant = () => {
         this.setState((state) => ({
             important: !state.important,
           }));
@@ -26,23 +26,24 @@ import './TodoListItem.scss';
         const { done } = this.state;
         let classNames='';
         if (done) {
-            classNames += 'done';
+            classNames += 'done ';
         }
-        const { label } = this.props;
-        const style = {
-            color: important ? 'steelblue' : 'black',
-            fontWeight: important ? 'bold' : 'normal',
-          }; 
-    
+        if (important) {
+            classNames += 'impotant ';
+        }
+        const { label, onDeleted } = this.props;
+
         return (
             <span className='todoListItem'>
-                <span className={classNames} style={style} onClick={this.onLabelClick}>
+                <span className={classNames} onClick={this.onLabelClick}>
                     {label}
                 </span>
-                <Button onClick={this.toggleImportant}outline color="success">
+                <Button onClick={this.onToggleImportant} outline color="success">
                     <i className="fa fa-exclamation" />
                 </Button>
-                <Button outline color="danger">
+                <Button outline 
+                color="danger"
+                onClick={onDeleted}>
                     <i className="fa fa-trash-o" />
                 </Button>
             </span>);
