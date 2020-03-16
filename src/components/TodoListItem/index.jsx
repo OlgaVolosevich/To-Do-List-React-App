@@ -1,29 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button } from 'reactstrap';
 import './TodoListItem.scss';
 
- class TodoListItem extends Component {
+ const TodoListItem = ({ label, onDeleted, onToggleImportant, onToggleDone, done, important }) => {
 
-    state = {
-        done: false,
-        important : this.props.important,
-    }
-
-     onLabelClick = () => {
-         this.setState((state) => ({
-            done: !state.done,
-          }));
-     }
-
-     onToggleImportant = () => {
-        this.setState((state) => ({
-            important: !state.important,
-          }));
-     }
-
-    render () {
-        const { important } = this.state;
-        const { done } = this.state;
         let classNames='';
         if (done) {
             classNames += 'done ';
@@ -31,14 +11,12 @@ import './TodoListItem.scss';
         if (important) {
             classNames += 'impotant ';
         }
-        const { label, onDeleted } = this.props;
-
         return (
             <span className='todoListItem'>
-                <span className={classNames} onClick={this.onLabelClick}>
+                <span className={classNames} onClick={onToggleDone}>
                     {label}
                 </span>
-                <Button onClick={this.onToggleImportant} outline color="success">
+                <Button onClick={onToggleImportant} outline color="success">
                     <i className="fa fa-exclamation" />
                 </Button>
                 <Button outline 
@@ -47,7 +25,6 @@ import './TodoListItem.scss';
                     <i className="fa fa-trash-o" />
                 </Button>
             </span>);
-    }
- }
+}
 
 export default TodoListItem;

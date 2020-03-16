@@ -8,15 +8,24 @@ import ItemAddForm from '../ItemAddForm';
 
 class App extends Component {
 
+    maxId = 100;
+
     state = {
         todos : [
-            {label : 'Learn JS', important : false, id : 1},
-            {label : 'Learn React', important : true, id : 2},
-            {label : 'Learn Angular', important : false, id : 3}
+            this.createNewTodo('Learn JS'),
+            this.createNewTodo('Learn React'),
+            this.createNewTodo('Learn Angular'),
         ]
     };
 
-    maxId = this.state.todos.length;
+    createNewTodo (label) {
+        return {
+            label,
+            important : false,
+            id : this.maxId++,
+            done : false
+        }
+    }
 
     deleteItem = (id) => {
         this.setState(({ todos })=> {
@@ -28,11 +37,7 @@ class App extends Component {
     }
 
     addItem = (text) => {
-        const newTodo = {
-            label : text,
-            important : false,
-            id : ++this.maxId
-        }
+        const newTodo = this.createNewTodo(text);
 
         this.setState(({ todos }) => {
             const modifiedTodoList = [...todos, newTodo];
@@ -41,16 +46,49 @@ class App extends Component {
             }
         })
     }
+
+    toggleProperty (property, array, id) {
+            let oldItem = array.filter((item)=> item.id === id)[0];
+            let index = array.findIndex((item)=>item.id === id);
+            let modifiedItem = {...oldItem, [property] : !oldItem[property]};
+            
+            let modifiedArray = [...array];
+            modifiedArray.splice(index,1,modifiedItem);
+            return modifiedArray
+
+    }
+
+    onToggleImportant = (id) => {
+        this.setState(({ todos }) => {
+            return {
+                todos : this.toggleProperty('important', todos, id)
+            }
+        });
+    }
+    
+    onToggleDone = (id) => {
+        this.setState(({ todos }) => {
+            return {
+                todos : this.toggleProperty('done', todos, id)
+            }
+        });
+    }
    
     render () {
+        const totalDone = this.state.todos.filter((todo) => todo.done).length;
+        const totalUndone = this.state.todos.length - totalDone;
         return (
             <div className={classes.app}>
-                <AppHeader toDo={3} done={0}/>
+                <AppHeader toDo={totalUndone} done={totalDone}/>
                 <div className={classes.topPannel}>
                 <SearchPannel/>
                 <ItemStatusFilter/>
                 </div>
-                <TodoList todos={this.state.todos} onDeleted={this.deleteItem}/>
+                <TodoList 
+                todos={this.state.todos} 
+                onDeleted={this.deleteItem}
+                onToggleImportant={this.onToggleImportant}
+                onToggleDone={this.onToggleDone}/>
                 <ItemAddForm addItem={this.addItem}/>
             </div>
         )
