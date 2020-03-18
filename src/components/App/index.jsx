@@ -15,7 +15,8 @@ class App extends Component {
             this.createNewTodo('Learn JS'),
             this.createNewTodo('Learn React'),
             this.createNewTodo('Learn Angular'),
-        ]
+        ],
+        searchValue : ''
     };
 
     createNewTodo (label) {
@@ -73,19 +74,34 @@ class App extends Component {
             }
         });
     }
+
+    search (array, value) {
+        return value.length ? 
+        array.filter((item) => item.label.toLowerCase().includes(value.toLowerCase())) 
+        : 
+        array;
+    }
+
+    onSearchChange = (value) => {
+        this.setState({
+            searchValue : value
+        })
+    }
    
     render () {
-        const totalDone = this.state.todos.filter((todo) => todo.done).length;
-        const totalUndone = this.state.todos.length - totalDone;
+        const { todos, searchValue } = this.state;
+        const filteredTodos = this.search(todos, searchValue);
+        const totalDone = todos.filter((todo) => todo.done).length;
+        const totalUndone = todos.length - totalDone;
         return (
             <div className={classes.app}>
                 <AppHeader toDo={totalUndone} done={totalDone}/>
                 <div className={classes.topPannel}>
-                <SearchPannel/>
+                <SearchPannel onSearchChange={this.onSearchChange}/>
                 <ItemStatusFilter/>
                 </div>
                 <TodoList 
-                todos={this.state.todos} 
+                todos={filteredTodos} 
                 onDeleted={this.deleteItem}
                 onToggleImportant={this.onToggleImportant}
                 onToggleDone={this.onToggleDone}/>
