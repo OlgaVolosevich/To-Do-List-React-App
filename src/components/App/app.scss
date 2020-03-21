@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.app {
+    width: 75vw;
+    display: grid;
+    margin: 50px auto;
+    justify-items: center;
+    align-items: center;
+    padding: 0 100px;
+    
+    &__topPannel {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 7fr 3fr;
+        grid-column-gap: 20px;
+        padding-bottom: 15px;
+    }
+
+    input, button {
+        line-height: 2rem;
+        height: 100%;
+    }
+}

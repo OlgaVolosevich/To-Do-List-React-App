@@ -1,13 +1,14 @@
 .todoListItem {
     display: flex;
+    width: 100%;
 
     span {
-        flex-grow: 1;
+        flex: 1;
         cursor: pointer;
     }
 
     button {
-        margin-left: 10px;
+        margin-left: 15px;
         width: 30px;
         height: 30px;
         display: flex;

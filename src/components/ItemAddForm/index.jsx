@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Input } from 'reactstrap';
-import classes from './ItemAddForm.module.scss';
+import './ItemAddForm.scss';
 
  class ItemAddForm extends Component {
 
@@ -23,10 +23,9 @@ import classes from './ItemAddForm.module.scss';
     }
     render () {
         return (
-            <Form onSubmit={this.onAddItem}>
-                <FormGroup className={classes.newTodoForm}>
-                    <Input  className={classes.newTodoInput}
-                            type="text" 
+            <Form className='ItemAddForm' onSubmit={this.onAddItem}>
+                <FormGroup className='ItemAddForm__newTodoForm'>
+                    <Input  type="text" 
                             placeholder="What else you need to do?"
                             onChange={this.onInputChange}
                             value={this.state.label}/>

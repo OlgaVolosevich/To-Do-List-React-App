@@ -1,0 +1,23 @@
+
+@mixin font ($size, $color: black){
+    font-family: 'Montserrat';
+    color: $color;
+    font-size: $size;
+}
+.appHeader {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 5fr 5fr;
+    grid-column-gap: 20px;
+    align-items: flex-end;
+    
+    h1 {
+        @include font(2.5rem);
+        justify-self: start;
+    }
+
+    h2 {
+        @include font(1.3rem, grey);
+        justify-self: end;
+    }
+}

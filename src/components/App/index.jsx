@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import classes from './app.module.scss';
+import './app.scss';
 import AppHeader from '../AppHeader';
 import SearchPannel from '../SearchPannel';
 import TodoList from '../TodoList';
@@ -113,9 +113,9 @@ class App extends Component {
         const totalDone = todos.filter((todo) => todo.done).length;
         const totalUndone = todos.length - totalDone;
         return (
-            <div className={classes.app}>
+            <div className='app'>
                 <AppHeader toDo={totalUndone} done={totalDone}/>
-                <div className={classes.topPannel}>
+                <div className='app__topPannel'>
                 <SearchPannel onSearchChange={this.onSearchChange}/>
                 <ItemStatusFilter onFilterButtonClick={this.onFilterButtonClick} filterValue={filterValue}/>
                 </div>

@@ -1,9 +1,9 @@
 import React from 'react';
-import classes from './appHeader.module.scss';
+import './appHeader.scss';
 
 const AppHeader = ({ toDo, done }) => {
     return (
-        <div className={classes.appHeader}>
+        <div className='appHeader'>
             <h1>My todo list</h1>
             <h2>{toDo} more to do, {done} done</h2>
         </div>

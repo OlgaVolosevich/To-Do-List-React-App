@@ -1,6 +1,7 @@
 import React from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import TodoListItem from '../TodoListItem';
+import './TodoList.scss';
 
 const TodoList = ({ todos, onDeleted, onToggleImportant, onToggleDone }) => {
     const elements = todos.map((item) => {
@@ -17,7 +18,7 @@ const TodoList = ({ todos, onDeleted, onToggleImportant, onToggleDone }) => {
     })
 
    return (
-    <ListGroup>
+    <ListGroup className='listGroup'>
         { elements }
     </ListGroup>
    );

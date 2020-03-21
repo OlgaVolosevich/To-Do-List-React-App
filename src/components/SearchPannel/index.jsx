@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Input } from 'reactstrap';
-import classes from './SearchPannel.module.scss';
+import './SearchPannel.scss';
 
 class SearchPannel extends Component {
    
@@ -16,7 +16,7 @@ class SearchPannel extends Component {
         this.props.onSearchChange(text);
     }
     render () {
-        return <Input className={classes.searchInput} 
+        return <Input className='searchInput' 
                       type="text" 
                       placeholder="type to search"
                       value={this.state.value}

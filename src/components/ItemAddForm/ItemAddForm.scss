@@ -1,0 +1,10 @@
+.ItemAddForm {
+    width: 100%;
+    &__newTodoForm {
+        width: 100%;
+        padding-top: 20px;
+        display: grid;
+        grid-template-columns: 9fr 3fr;
+        grid-column-gap: 10px;
+    }
+}
